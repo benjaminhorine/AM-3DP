@@ -1,0 +1,103 @@
+;CE3PRO Custom Start
+;BH  11/20/22 v2.0
+
+;Reset
+G90 ;Absolute Positioning
+G92 ;Reset Extruder
+G21 ;Set all units to millimeter
+
+;Homing & ABL
+M117 Plastic Pusher find Zer0 ;Update LCD message
+G28	;Home all axes
+M420 S1 	;Remember ABL
+
+;Purge Travel
+M117 Purging Plastic Pusher...	;Update LCD message
+G92 E0 		;Reset Extruder
+G1 Z1 		;Raise head to avoid scratching
+G1 X30 Y15 F9000 	;Starting point
+M300 S300 P50	;300Hz beep for 100ms
+G1 X10 E15 F2700 	;Lay down a fatty (reverse)
+G1 X50 Y5 Z1.75 E-0.75 F9000 	;Raise and wipe head
+G92 E0 		;Reset Extruder
+G1 X60 Y15 Z1 F5400 ;Retract, lower head, and move slightly
+G1 X150 F12000	;Sweep to cut strings
+G1 X75 F9000 	;Return to general start area
+
+;Sound the alarm
+M300 S300 P50	;300Hz beep for 50ms
+G4 P250		;Pause for 250ms
+M300 S300 P20	;300Hz beep for 20ms
+
+M117 Pushing plastic... ;Update LCD message
+
+;CE3PRO Custom End
+;BH  11/20/22 v2.0
+
+;End of print positioning
+G91 		;Relative positioning
+G1 E-2 F2700 	;Retract filament
+G1 E-5 Z0.2 F2400 	;Retract more and raise Z
+G1 X5 Y5 F3000 	;Wipe out
+G1 Z10 		;Raise Z more
+G90 		;Absolute positioning
+
+;Move Print Bed
+G1 X20 Y215 ;Present print
+
+;Shut Down Sequence
+M106 S0 ;Turn-off fan
+M104 S0 ;Turn-off hotend
+M140 S0 ;Turn-off bed
+
+M84 X Y E ;Disable all steppers but Z
+
+;Sound the alarm
+M300 S300 P500	;300Hz beep for 500ms
+G4 P500		;Pause for 500ms
+M300 S300 P150	;300Hz beep for 150ms
+
+M117 Pushing plastic complete! ;Update LCD message
+
+
+;CE3PRO-GAMMA
+;CUSTOM START SEQUENCE
+;10/16/23 v3.0 
+;BWH
+
+;RESET & HOMING SEQUENCE
+M117 FINDING ZER0 SPOT	;UPDATE LCD MESSAGE
+G90	;ABSOLUTE POSITIONING
+G92	;RESET ALL
+G21	;SET UNITS TO MILLIMETER
+G28	;HOME ALL AXIS
+M420 S1	;RECALL ABL
+
+;PURGE TRAVEL SEQUENCE (FATTY)
+M117 PURGING A FATTY	;UPDATE LCD MESSAGE
+G92 E0	;RESET EXTRUDER
+M300 S300
+G1 Z1	;RAISE HEAD TO AVOID SCRATCHIGN
+G1 X30 Y15 F9000 	;STARTING POINT
+
+
+;Purge Travel
+M117 Purging Plastic Pusher...	;Update LCD message
+G92 E0 		;Reset Extruder
+G1 Z1 		;Raise head to avoid scratching
+G1 X30 Y15 F9000 	;Starting point
+M300 S300 P50	;300Hz beep for 100ms
+G1 X10 E15 F2700 	;Lay down a fatty (reverse)
+G1 X50 Y5 Z1.75 E-0.75 F9000 	;Raise and wipe head
+G92 E0 		;Reset Extruder
+G1 X60 Y15 Z1 F5400 ;Retract, lower head, and move slightly
+G1 X150 F12000	;Sweep to cut strings
+G1 X75 F9000 	;Return to general start area
+
+;Sound the alarm
+M300 S300 P50	;300Hz beep for 50ms
+G4 P250		;Pause for 250ms
+M300 S300 P20	;300Hz beep for 20ms
+
+M117 Pushing plastic... ;Update LCD message
+
